@@ -49,4 +49,15 @@ public class EmployeePayrollService {
 			new EmployeePayrollFileIOService().writeData(employeePayrollList);
 		}
 	}
+
+	// Print data
+	public void printData(IOService printTo) {
+		if (printTo.equals(IOService.FILE_IO))
+			new EmployeePayrollFileIOService().printData();
+	}
+
+	// Count number of entries
+	public long countEntries() {
+		return new EmployeePayrollFileIOService().countEntries();
+	}
 }

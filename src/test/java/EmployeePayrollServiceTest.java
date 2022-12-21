@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.bridgelabz.EmployeePayrollData;
@@ -16,6 +17,8 @@ class EmployeePayrollServiceTest {
 				new EmployeePayrollData(3, "Mark Zukerberg", 300000.0) };
 		EmployeePayrollService employeePayrollService = new EmployeePayrollService(Arrays.asList(employeePayrollList));
 		employeePayrollService.writeEmployeePayrollData(EmployeePayrollService.IOService.FILE_IO);
+		long entries = employeePayrollService.countEntries();
+		Assertions.assertEquals(3, entries);
 	}
 
 }

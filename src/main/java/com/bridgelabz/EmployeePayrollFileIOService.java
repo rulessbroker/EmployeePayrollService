@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -20,5 +21,25 @@ public class EmployeePayrollFileIOService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	// printData method in try-catch block
+	public void printData() {
+		try {
+			Files.lines(new File(FILE_PATH).toPath()).forEach(System.out::println);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// CountEntries method which is of long type
+	public long countEntries() {
+		long entries = 0;// initialized variable
+		try {
+			entries = Files.lines(new File(FILE_PATH).toPath()).count();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return entries;
 	}
 }
