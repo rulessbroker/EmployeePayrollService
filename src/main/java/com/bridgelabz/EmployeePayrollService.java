@@ -6,6 +6,10 @@ import java.util.Scanner;
 
 public class EmployeePayrollService {
 
+	public enum IOService {
+		CONSOLE_IO, FILE_IO
+	};
+
 	private List<EmployeePayrollData> employeePayrollList;// declare variable
 
 	public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList) {// Parameterized constructor
@@ -19,7 +23,8 @@ public class EmployeePayrollService {
 		EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);// constructor
 		Scanner consoleInputReader = new Scanner(System.in);
 		employeePayrollService.readEmployeePayrollData(consoleInputReader);// calling read method using obj reference
-		employeePayrollService.writeEmployeePayrollData();// calling write method using obj reference
+		employeePayrollService.writeEmployeePayrollData(IOService.CONSOLE_IO);// calling write method using obj
+																				// reference
 	}
 
 	// Create the Read Employee Payroll Data Method
@@ -35,8 +40,13 @@ public class EmployeePayrollService {
 
 	// Create to Write Employee payroll Data Method and passing the message and
 	// print employeePayrollList
-	
-	private void writeEmployeePayrollData() {
-		System.out.println("\nWriting Employee Payroll Roaster to Console\n" + employeePayrollList);
+
+	public void writeEmployeePayrollData(IOService writeTo) {
+		if (writeTo.equals(IOService.CONSOLE_IO))
+			System.out.println("\nWriting Employee Payroll Data to Console\n" + employeePayrollList);// print
+																										// employeePayrollList
+		else if (writeTo.equals(IOService.FILE_IO)) {
+			new EmployeePayrollFileIOService().writeData(employeePayrollList);
+		}
 	}
 }
